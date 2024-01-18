@@ -1,7 +1,7 @@
 // MiniGame
 
 import React, { useState, useEffect } from 'react';
-import { get } from '../services/authService';
+import { post, get } from '../services/authService';
 import './MiniGame.css';
 import { SERVER_URL } from '../services/SERVER_URL';
 
@@ -15,6 +15,8 @@ function MiniGame() {
   const [isSelecting, setIsSelecting] = useState(false);
   const [dictionary, setDictionary] = useState([]);
   const [gameOver, setGameOver] = useState(false);
+  const [topScores, setTopScores] = useState([]);
+  const TOP_SCORES_COUNT = 20; 
 
   const points = {
     A: 2,
@@ -93,6 +95,11 @@ function MiniGame() {
   const letters = consonants.concat(vocals);
 
   useEffect(() => {
+    // Call fetchTopScores when the component mounts
+    fetchTopScores();
+  }, []); 
+
+  useEffect(() => {
     const loadDictionaryData = async () => {
       try {
         const response = await get('/dictionary');
@@ -164,11 +171,11 @@ function MiniGame() {
     setIsSelecting(true);
     setSelectedLetters([{ letter, index }]);
   };
-
+  
   const handleMouseEnter = (letter, index) => {
     if (isSelecting) {
       const lastSelectedIndex = selectedLetters[selectedLetters.length - 1].index;
-
+  
       // Check if the letter is adjacent to the last selected letter and not already selected
       if (isNeighbor(index, lastSelectedIndex) && !selectedLetters.find((item) => item.index === index)) {
         setSelectedLetters([...selectedLetters, { letter, index }]);
@@ -176,41 +183,38 @@ function MiniGame() {
     }
   };
 
-  const handleMouseUp = () => {
-    setIsSelecting(false);
-    const word = selectedLetters.map((l) => l.letter).join('').toLowerCase(); // Convert to lowercase for case-insensitive check
-  
-    if (isWordInDictionary(word)) {
-      console.log(`Word "${word}" found in the dictionary.`);
-      // Word is valid, add it to the list of valid words
-      setWordsList((prevWordsList) => [...prevWordsList, word]);
-  
-      // Replace selected letters in the grid
-      const updatedGridLetters = [...gridLetters];
-      selectedLetters.forEach(({ index }) => {
-        // Replace the letter with a new random letter
-        updatedGridLetters[index] = getRandomLetter();
-      });
-      setGridLetters(updatedGridLetters);
-  
-      // Check word length and add time accordingly
-      if (word.length > 5) {
-        setTimer((prevTimer) => prevTimer + 10); // Add 10 seconds for words longer than 5 letters
-      } else if (word.length > 4) {
-        setTimer((prevTimer) => prevTimer + 5); // Add 5 seconds for words longer than 4 letters
-      }
-    } else {
-      console.log(`Word "${word}" does not exist in the dictionary.`);
-    }
-  
+const handleMouseUp = () => {
+  setIsSelecting(false);
+  const word = selectedLetters.map((l) => l.letter).join('').toLowerCase(); // Convert to lowercase for case-insensitive check
+
+  if (isWordInDictionary(word)) {
+    // Word is valid, add it to the list of valid words
+    setWordsList((prevWordsList) => [...prevWordsList, word]);
+
+    // Replace selected letters in the grid
+    const updatedGridLetters = [...gridLetters];
+    selectedLetters.forEach(({ index }) => {
+      // Replace the letter with a new random letter
+      updatedGridLetters[index] = getRandomLetter();
+    });
+    setGridLetters(updatedGridLetters);
+
     // Clear the selected letters
     setSelectedLetters([]);
-  
-    // Check if the timer is below 0 and set the game over state if necessary
-    if (timer <= 0) {
-      setGameOver(true);
+    
+    // Check word length and add time accordingly
+    if (word.length > 5) {
+      setTimer((prevTimer) => prevTimer + 10); // Add 10 seconds for words longer than 5 letters
+    } else if (word.length > 4) {
+      setTimer((prevTimer) => prevTimer + 5); // Add 5 seconds for words longer than 4 letters
     }
-  };
+  } else {
+    console.log(`Word "${word}" does not exist in the dictionary.`);
+    // Invalid word, clear the selected letters
+    setSelectedLetters([]);
+  }
+};
+
 
   // Function to get a random letter
   const getRandomLetter = () => {
@@ -241,6 +245,41 @@ function MiniGame() {
     return totalScore;
   };
 
+  const sendScoreToServer = async (score) => {
+    try {
+      const response = await post('/users/update-score', { score });
+  
+      if (response.status === 200) {
+        console.log('Score updated successfully');
+      } else {
+        console.error('Failed to update score:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error updating score:', error);
+    }
+  };
+  
+  // Call sendScoreToServer with the user's score when the game is over
+  if (gameOver) {
+    const userScore = calculateTotalScore();
+    sendScoreToServer(userScore);
+  }
+  
+  const fetchTopScores = async () => {
+    try {
+      const response = await get(`/users/scores/top?limit=${TOP_SCORES_COUNT}`);
+      if (response.status === 200) {
+        console.log(response);
+        setTopScores(response.data);
+      } else {
+        console.error('Error fetching top scores data:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error fetching top scores data:', error);
+    }
+  };
+  
+
   const isNeighbor = (index1, index2) => {
     const row1 = Math.floor(index1 / 5);
     const col1 = index1 % 5;
@@ -255,68 +294,105 @@ function MiniGame() {
 
 
   return (
-    <div>
-      <h2 className="title">Word Minigame</h2>
-  
-      {(!isGameStarted || gameOver) && (
-        <button className="start-button" onClick={handleStartGame}>
-          Start Game
-        </button>
-      )}
-  
-      {gameOver && (
-        <div>
-          <p>Game Over! Your Score: {calculateTotalScore()}</p>
-        </div>
-      )}
+    <div className="mini-game-component">
+        <h1 className="title">Word Minigame</h1>
+        <h3>Connect letters to complete as many words as possible in 1 minute!</h3>
+        <p>
+            Remember the rules: You have one minute to complete as many words as possible.<br />
+            If you shuffle the letters, you lose 3 seconds. <br />
+            For words of 5 characters, you get an additional 5 seconds, and for words with more than 5 letters, you earn 10 extra seconds.
+        </p>
 
-      <div className="game-arrange">
-        <div className="word-section">
-          <h3>Valid Words:</h3>
-          <ul className="valid-words-list">
-            {wordsList.map((word, index) => (
-              <li key={index}>
-                {word} ({calculateWordPoints(word)})
-              </li>
-            ))}
-          </ul>
-        </div>
+        {(!isGameStarted || gameOver) && (
+            <button className="start-button" onClick={handleStartGame}>
+                Start Game
+            </button>
+        )}
 
-        <div className="game-container">
-          {isGameStarted && !gameOver ? (
-            <div className="grid">
-              {gridLetters.map((item, index) => (
-                <button
-                  key={index}
-                  onMouseDown={() => handleMouseDown(item.letter, index)}
-                  onMouseEnter={() => handleMouseEnter(item.letter, index)}
-                  onMouseUp={handleMouseUp}
-                >
-                  {item.letter}
-                  <sub>{item.points}</sub>
-                </button>
-              ))}
+        {gameOver && (
+            <div>
+                <p>Game Over! Your Score: {calculateTotalScore()}</p>
             </div>
-          ) : null}
-        </div>
+        )}
 
-        <div className="game-functions">
-          {isGameStarted && !gameOver ? (
-            <>
-              <p>Timer: {timer}</p>
-              <button className="shuffle-button" onClick={handleShuffle}>
-                Shuffle
-              </button>
-            </>
-          ) : null}
-        </div>
-      </div>
+        <div className="game-arrange">
+            <div className="word-section">
+                <div className="valid-words-table">
+                    <table className="table-common">
+                        <thead>
+                            <tr>
+                                <th>Word</th>
+                                <th>Points</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {wordsList.map((word, index) => (
+                                <tr key={index}>
+                                    <td>{word}</td>
+                                    <td>{calculateWordPoints(word)}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-      <div className="current-word">
-        <p>Current Word: {currentWord}</p>
-      </div>
+            <div className="game-container">
+                {isGameStarted && !gameOver ? (
+                    <div className="grid">
+                        {gridLetters.map((item, index) => (
+                            <button
+                                key={index}
+                                onMouseDown={() => handleMouseDown(item.letter, index)}
+                                onMouseEnter={() => handleMouseEnter(item.letter, index)}
+                                onMouseUp={handleMouseUp}
+                                className={selectedLetters.some((l) => l.index === index) ? 'selected-letter' : ''}
+                            >
+                                {item.letter}
+                                <sub>{item.points}</sub>
+                            </button>
+                        ))}
+                    </div>
+                ) : null}
+            </div>
+
+            <div className="game-functions">
+                {isGameStarted && !gameOver ? (
+                    <>
+                        <p>Timer: {timer}</p>
+                        <button className="shuffle-button" onClick={handleShuffle}>
+                            Shuffle
+                        </button>
+                    </>
+                ) : (
+                    <div className="score-section">
+                        <table className="table-common score-table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Username</th>
+                                    <th>Score</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {topScores.map((score, index) => (
+                                    <tr key={index}>
+                                        <td>{index + 1}</td>
+                                        <td>{score.username}</td>
+                                        <td>{score.max_points}</td>
+                                        <td>{new Date(score.max_points_date).toLocaleString()}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )}
+            </div>
+        </div>
     </div>
-  );
+);
+
 }
 
 export default MiniGame;

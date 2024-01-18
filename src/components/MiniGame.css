@@ -1,9 +1,9 @@
 /* Center the title and start button */
 .title {
     text-align: center;
-  }
-  
-  .start-button {
+}
+
+.start-button {
     display: block;
     margin: 0 auto;
     padding: 10px 20px;
@@ -12,32 +12,78 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  /* Arrange the sections horizontally */
-  .game-arrange {
+}
+
+/* Arrange the sections horizontally */
+.game-arrange {
     display: flex;
     justify-content: space-between;
-    align-items: ce;
+    align-items: center;
     margin-top: 20px;
-  }
-  
-  /* Style the word section */
-  .word-section {
+}
+
+.selected-letter {
+    background-color: rgb(214, 223, 245);
+    color: #000;
+}
+
+/* START WORD TABLE SECTION */
+.word-section,
+.score-section {
     flex: 1;
-  }
-  
-  .valid-words-list {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .valid-words-list li {
-    margin-bottom: 5px;
-  }
-  
-  /* Style the game container */
-  .game-container {
+    height: 400px;
+    overflow-y: auto;
+    background-color: #f2f2f274;
+    border-radius: 10px;
+}
+.game-functions{
+    height: 400px;
+}
+
+.table-common {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.table-common th,
+.table-common td {
+    padding: 5px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.table-common th {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+}
+
+.table-common tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-common tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.table-common tbody tr:hover {
+    background-color: #ddd;
+}
+/* END WORD TABLE */
+
+/* START SCORE TABLE */
+.score-section {
+    background-color: #f2f2f2; /* Corrected background-color value */
+}
+/* FINISH SCORE TABLE */
+
+/* Style the game container */
+.mini-game-component {
+    width: 90%;
+}
+
+.game-container {
     width: 430px;
     height: 430px;
     border: 5px solid;
@@ -46,31 +92,38 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .grid {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 20px;
-  }
-  
-  .grid button {
+}
+
+.grid button {
     width: 60px;
     height: 60px;
     font-size: 1.2em;
-  }
-  
-  /* Style the game functions */
-  .game-functions {
+}
+
+.grid button:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+/* Style the game functions */
+.game-functions {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-  }
-  
-  .shuffle-button {
+}
+
+.shuffle-button {
     margin-top: 20px;
     padding: 10px 20px;
     background-color: #007bff;
@@ -78,11 +131,4 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  /* Style the current word section */
-  .current-word {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
+}

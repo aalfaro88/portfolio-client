@@ -3,8 +3,11 @@ import { get, post } from './services/authService';
 import './App.css';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import { SERVER_URL } from './services/SERVER_URL';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import MiniGame from './components/MiniGame';
 import AddUsernameForm from './components/AddUsernameForm';
+import Navbar from './components/Navbar'; 
+import BankSimulator from './components/BankSimulator'
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -73,25 +76,84 @@ function App() {
   return (
     <GoogleOAuthProvider clientId="369527887188-jc5rpas4gfd0e4teldg7qt54h86u4j5n.apps.googleusercontent.com">
       <div>
-        <h1>Welcome to my Portfolio</h1>
-        {!isAuthenticated ? (
-          <GoogleLogin
-            onSuccess={handleLogin}
-            onError={() => {
-              console.log('Login Failed');
-            }}
-          />
-        ) : usernameChecked && shouldShowAddUsernameForm ? ( // Check usernameChecked and shouldShowAddUsernameForm
-          <AddUsernameForm onUsernameAdded={handleUsernameAdded} />
-        ) : (
+      <Navbar isAuthenticated={isAuthenticated} />
+        {!isAuthenticated && (
           <>
-            <MiniGame />
-            <button onClick={handleLogout}>Logout</button>
+            <h1>Welcome to my Portfolio</h1>
+            <h3>Explore my projects and creations. Let's start with a fun word MiniGame!</h3>
+            <p>
+              Discover the technologies behind the MiniGame. Click on each logo to learn more about their role in the game.<br />
+              <b>When you are ready to play, login using your Google account.</b>
+            </p>
+            <div className="technology-icons">
+              <div className="row">
+                <div className="technology-icon-box">
+                  <img src="https://img.icons8.com/external-tal-revivo-filled-tal-revivo/96/external-mongodb-a-cross-platform-document-oriented-database-program-logo-filled-tal-revivo.png" alt="MongoDB" />
+                  <p>MongoDB</p>
+                </div>
+                <div className="technology-icon-box">
+                  <img src="https://img.icons8.com/fluency/96/google-logo.png" alt="Google Login API" />
+                  <p>Google Login</p>
+                </div>
+                <div className="technology-icon-box">
+                  <img src="https://img.icons8.com/officel/80/react.png" alt="React.js" />
+                  <p>React.js</p>
+                </div>
+                <div className="technology-icon-box">
+                  <img src="https://img.icons8.com/fluency/96/node-js.png" alt="Node.js" />
+                  <p>Node.js</p>
+                </div>
+              </div>
+              <div className="row">
+                <div className="technology-icon-box">
+                  <img src="https://img.icons8.com/ios/50/css3.png" alt="CSS3" />
+                  <p>CSS3</p>
+                </div>
+                <div className="technology-icon-box">
+                  <img src="https://img.icons8.com/color/48/html-5--v1.png" alt="HTML5" />
+                  <p>HTML5</p>
+                </div>
+                <div className="technology-icon-box">
+                  <img src="https://img.icons8.com/ios-filled/50/javascript.png" alt="JavaScript" />
+                  <p>JavaScript</p>
+                </div>
+                <div className="technology-icon-box">
+                  <img src="https://img.icons8.com/ios-filled/50/github.png" alt="GitHub" />
+                  <p>GitHub</p>
+                </div>
+              </div>
+            </div>
           </>
         )}
+  
+        <div className="google-login-container">          
+          {!isAuthenticated ? (
+            <GoogleLogin
+              onSuccess={handleLogin}
+              onError={() => {
+                console.log('Login Failed');
+              }}
+            />
+          ) : (
+            <>
+              {usernameChecked && shouldShowAddUsernameForm ? (
+                <AddUsernameForm onUsernameAdded={handleUsernameAdded} />
+              ) : (
+                <>
+                  <MiniGame />
+                </>
+              )}
+              <div className='logout-button'>
+                <button onClick={handleLogout}>Logout</button>
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </GoogleOAuthProvider>
   );
+    
 }
 
 export default App;
+

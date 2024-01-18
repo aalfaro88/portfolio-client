@@ -1,7 +1,5 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100%;
   text-align: center;
 }
 
@@ -39,4 +37,59 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.google-login-container {
+  display: flex; /* Add flex display */
+  flex-direction: column; /* To center items vertically */
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* ICONS  */
+
+/* Style the container for technology icons */
+.technology-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Style each row */
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px; /* Add margin between rows */
+}
+
+/* Style each technology icon box */
+.technology-icon-box {
+  text-align: center;
+  width: 100px;
+  height: 140px;
+  background-color: #f2f2f2; /* Add a background color to each box */
+  padding: 10px; /* Add padding to separate boxes */
+  border-radius: 10px; /* Add rounded corners to boxes */
+  margin: 10px
+}
+
+/* Style the image inside the box */
+.technology-icon-box img {
+  margin-top: 10px;
+  width: 80px; /* Set a smaller fixed width for the images */
+  height: 80px; /* Set a smaller fixed height for the images */
+  margin-bottom: 5px; /* Add margin between the image and text */
+}
+
+/* Style the text below the image */
+.technology-icon-box p {
+  font-weight: bold;
+  font-size: 15px; /* Adjust the font size */
+  margin: 0;
+}
+
+.logout-button{
+  margin-top: 20px;
 }
