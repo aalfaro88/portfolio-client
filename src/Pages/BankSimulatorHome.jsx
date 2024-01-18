@@ -1,7 +1,7 @@
 // BankSimulator.jsx
 import React from 'react';
 
-function BankSimulator() {
+function BankSimulatorHome() {
   return (
     <div className="bank-simulator">
       <h1>Welcome to Bank Simulator</h1>
@@ -10,4 +10,6 @@ function BankSimulator() {
   );
 }
 
-export default BankSimulator;
+export default BankSimulatorHome;
+
+
