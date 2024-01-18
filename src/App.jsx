@@ -4,7 +4,7 @@ import './App.css';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Home from './pages/Home'; // Import the Home component
+import Home from './Pages/Home';
 import BankSimulatorHome from './Pages/BankSimulatorHome';
 
 function App() {
@@ -86,7 +86,7 @@ function App() {
               handleLogout={handleLogout}
             />}
           />
-          <Route path="/bank-simulator" element={<BankSimulatorHome />} /> {/* Change BankSimulatoHome to BankSimulatorHome */}
+          <Route path="/bank-simulator" element={<BankSimulatorHome />} /> 
         </Routes>
       </div>
     </GoogleOAuthProvider>

@@ -1,0 +1,10 @@
+.bank-simulator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: calc(100vh - 60px); /* Subtract the navbar height from the viewport height */
+    margin-top: 100px; /* Add margin to create space between navbar and content */
+  }
+
+  
