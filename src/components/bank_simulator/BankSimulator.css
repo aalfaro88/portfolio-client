@@ -87,8 +87,9 @@
     margin-top: 20px;
     margin-bottom: 20px;
     background-color: white;
+    overflow: auto; /* Enables scrolling if content overflows */
   }
-
+  
   .webpage-version .box h1{
     color: black;
     font-size: 5rem;
@@ -146,5 +147,8 @@
     color: black;
     font-size: 3rem;
   }
-/* Toggle switch container */
 
+
+  /* --------------Animations---------------- */
+
+  

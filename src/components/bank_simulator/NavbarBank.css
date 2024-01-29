@@ -1,8 +1,38 @@
 .navbar-bank {
-    background-color: #092146;
-    color: white;
-    padding: 20px;
-    text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #092146;
+  color: white;
+  padding: 20px;
+  text-align: left;
+  font-weight: bold;
+  }
+
+  
+  
+  .navbar-link-bank {
+    margin-left: 20px;
+    text-decoration: none;
+    color: rgb(255, 208, 0); 
     font-weight: bold;
+    font-size: 1.2rem;
   }
   
+  .navbar-link-bank:hover {
+    color: rgb(184, 150, 1); 
+  }
+  
+  .navbar-button-link {
+    margin-left: 20px;
+    background: none;
+    border: none;
+    color: white; 
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .navbar-button-link:hover {
+    color: rgba(207, 207, 207, 0.8); 
+  }
