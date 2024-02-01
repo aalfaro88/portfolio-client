@@ -1,10 +1,79 @@
-.bank-simulator {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    height: calc(100vh - 60px); /* Subtract the navbar height from the viewport height */
-    margin-top: 100px; /* Add margin to create space between navbar and content */
+* {
+  margin: 0;
+  padding: 0;
+
+}
+
+/* Base styles (applied to all screen sizes) */
+.box {
+  width: 100%;
+  height: 840px;
+  font-size: 1.5rem;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  background-color: white;
+  overflow: auto;
+}
+
+.box h1 {
+  color: black;
+  font-size: 5rem;
+}
+
+.information-slider {
+  width: 100%;
+  height: 400px;
+  background-color: #063262;
+  margin-bottom: 30px;
+}
+
+.information-slide {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  width: 100%;
+  height: 400px;
+}
+
+.information-slide div {
+  width: 50%;
+  text-align: left !important;
+  color: white;
+}
+
+.information-slide div p,
+.information-slide div h3 {
+  padding-left: 30px;
+}
+
+.information-slide div img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Message for small screens */
+.small-screen-message {
+  display: none;
+  color: #333;
+  background-color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  font-size: 1.2rem;
+}
+
+/* Show message on small screens */
+@media (max-width: 768px) {
+  .small-screen-message {
+    display: block;
   }
 
-  
+  /* Hide main content on small screens */
+  .bank-simulator {
+    display: none;
+  }
+}

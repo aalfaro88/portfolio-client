@@ -73,7 +73,7 @@ function App() {
   return (
     <GoogleOAuthProvider clientId="369527887188-jc5rpas4gfd0e4teldg7qt54h86u4j5n.apps.googleusercontent.com">
       <div>
-        <Navbar isAuthenticated={isAuthenticated} />
+      <Navbar isAuthenticated={isAuthenticated} handleLogout={handleLogout} />
         <Routes>
           <Route
             path="/"
