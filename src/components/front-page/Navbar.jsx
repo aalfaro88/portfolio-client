@@ -11,18 +11,18 @@ function Navbar({ isAuthenticated, handleLogout }) {
 
   return (
     <nav className="navbar">
-      <ul className="navbar-list">
-        <li className="navbar-item">
-          <Link to="/" className="navbar-link" onClick={handleLinkClick}>
-            Home
-          </Link>
-        </li>
-          <li className="navbar-item">
+      <div className="navbar-list">
+        <div className='left-section'>
+            <Link to="/" className="navbar-link" onClick={handleLinkClick}>
+              <span className="dev-symbol">&lt;Dev /&gt;</span> AlbertoAlfaro
+            </Link>
+        </div>
+        <div className='right-section'>
             <Link to="/bank-simulator" className="navbar-link" onClick={handleLinkClick}>
               Bank Simulator
             </Link>
-          </li>
-      </ul>
+        </div>
+      </div>
     </nav>
   );
 }

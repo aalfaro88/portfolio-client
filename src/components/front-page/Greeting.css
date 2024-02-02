@@ -1,0 +1,160 @@
+.welcome-message {
+    color: #98FAEC;
+    margin-top: 190px;
+    font-size: 5.5rem;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: lighter;
+
+}
+
+.section-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    
+}
+
+/*------------LEFT SECTION------------------*/  
+
+.left-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    padding: 20px;
+  }
+  
+
+  
+  .profile-container {
+    height: 380px;
+    width: 250px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f928;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #98FAEC;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 20px;
+  }
+  
+  /* Adjust the font size for the Full-Stack Web Developer title */
+  h2 {
+    font-size: 1.5rem; /* Smaller font size */
+    margin-bottom: 0px;
+  }
+
+  p {
+    margin-top: 0;
+    font-size: .8rem;
+  }
+  
+  .personal-info {
+    align-items: center;
+  }
+
+  .contact-info {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .contact-info-icon {
+    color: #98FAEC; /* Set the icon color */
+    margin-right: 8px; /* Space between icon and text */
+    width: 20px; /* Fixed width for icons */
+    text-align: center;
+  }
+  
+  .contact-info-text {
+    text-align: left;
+    display: inline-block; /* Align with the icon */
+  }
+  
+  
+  .download-cv-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .download-cv-button:hover {
+    background-color: #0056b3;
+  }
+ 
+  
+ /*------------MIDDLE SECTION------------------*/  
+
+  .middle-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the left */
+    width: 40%;
+    padding: 20px;
+}
+
+.greeting-title {
+    text-align: left;
+    color: white;
+    font-size: 2.3rem;
+    margin-bottom: 20px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: lighter;
+    line-height: 1.1;
+}
+
+.green-text {
+    color: #12F7D6;
+}
+
+
+.greeting-description {
+    color: #fff;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    text-align: left;
+}
+
+ /*------------RIGHT SECTION------------------*/
+
+.right-box {
+    width: 20%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px; /* Space between items */
+    
+    
+}
+
+.tech-skill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10px;
+    background-color: #12F7D6;
+    color: #1A1E23;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-align: center;
+     
+}

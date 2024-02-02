@@ -1,9 +1,9 @@
 // MiniGame
 
 import React, { useState, useEffect } from 'react';
-import { post, get } from '../services/authService';
+import { post, get } from '../../services/authService';
 import './MiniGame.css';
-import { SERVER_URL } from '../services/SERVER_URL';
+import { SERVER_URL } from '../../services/SERVER_URL';
 
 function MiniGame() {
   const [gridLetters, setGridLetters] = useState([]);
@@ -296,12 +296,14 @@ const handleMouseUp = () => {
   return (
     <div className="mini-game-component">
         <h1 className="title">Word Minigame</h1>
-        <h3>Connect letters to complete as many words as possible in 1 minute!</h3>
-        <p>
-            Remember the rules: You have one minute to complete as many words as possible.<br />
-            If you shuffle the letters, you lose 3 seconds. <br />
-            For words of 5 characters, you get an additional 5 seconds, and for words with more than 5 letters, you earn 10 extra seconds.
-        </p>
+        <div className='game-instructions'>
+          <h3>Connect letters to complete as many words as possible in 1 minute!</h3>
+          <p>
+              Remember the rules: You have one minute to complete as many words as possible.<br />
+              If you shuffle the letters, you lose 3 seconds. <br />
+              For words of 5 characters, you get an additional 5 seconds, and for words with more than 5 letters, you earn 10 extra seconds.
+          </p>
+        </div>
 
         {(!isGameStarted || gameOver) && (
             <button className="start-button" onClick={handleStartGame}>
@@ -311,7 +313,7 @@ const handleMouseUp = () => {
 
         {gameOver && (
             <div>
-                <p>Game Over! Your Score: {calculateTotalScore()}</p>
+                <p className="gameover-text">Game Over! Your Score: {calculateTotalScore()}</p>
             </div>
         )}
 
@@ -359,7 +361,7 @@ const handleMouseUp = () => {
             <div className="game-functions">
                 {isGameStarted && !gameOver ? (
                     <>
-                        <p>Timer: {timer}</p>
+                        <p className="timer-text">Timer: {timer}</p>
                         <button className="shuffle-button" onClick={handleShuffle}>
                             Shuffle
                         </button>

@@ -2,15 +2,18 @@ import { useState, useEffect } from 'react';
 import { get, post } from './services/authService';
 import './App.css';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
-import { Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './Pages/Home';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import Navbar from './components/front-page/Navbar';
+import Greeting from './components/front-page/Greeting';
+import AboutMe from './components/front-page/AboutMe';
+import MiniGameHome from './components/front-page/MiniGameHome';
 import BankSimulatorHome from './Pages/BankSimulatorHome';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [shouldShowAddUsernameForm, setShouldShowAddUsernameForm] = useState(false);
   const [usernameChecked, setUsernameChecked] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const token = localStorage.getItem('authToken');
@@ -73,11 +76,13 @@ function App() {
   return (
     <GoogleOAuthProvider clientId="369527887188-jc5rpas4gfd0e4teldg7qt54h86u4j5n.apps.googleusercontent.com">
       <div>
-      <Navbar isAuthenticated={isAuthenticated} handleLogout={handleLogout} />
+        <Navbar isAuthenticated={isAuthenticated} handleLogout={handleLogout} />
+        {location.pathname !== '/bank-simulator' && <Greeting />}
+        {location.pathname !== '/bank-simulator' && <AboutMe />}
         <Routes>
           <Route
             path="/"
-            element={<Home
+            element={<MiniGameHome
               isAuthenticated={isAuthenticated}
               handleLogin={handleLogin}
               usernameChecked={usernameChecked}
@@ -91,6 +96,6 @@ function App() {
       </div>
     </GoogleOAuthProvider>
   );
-}
+};
 
 export default App;

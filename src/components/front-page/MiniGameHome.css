@@ -1,0 +1,82 @@
+.game-container-home{
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #282E36;
+    padding: 50px;
+}
+
+.google-login-container {
+    display: flex; /* Add flex display */
+    flex-direction: column; /* To center items vertically */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  /* ICONS  */
+  
+  /* Style the container for technology icons */
+  .technology-icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Style each row */
+  .row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px; /* Add margin between rows */
+  }
+  
+  /* Style each technology icon box */
+  .technology-icon-box {
+    text-align: center;
+    width: 100px;
+    height: 140px;
+    background-color: #f2f2f2; /* Add a background color to each box */
+    padding: 10px; /* Add padding to separate boxes */
+    border-radius: 10px; /* Add rounded corners to boxes */
+    margin: 10px
+  }
+  
+  /* Style the image inside the box */
+  .technology-icon-box img {
+    margin-top: 10px;
+    width: 80px; /* Set a smaller fixed width for the images */
+    height: 80px; /* Set a smaller fixed height for the images */
+    margin-bottom: 5px; /* Add margin between the image and text */
+  }
+  
+  /* Style the text below the image */
+  .technology-icon-box p {
+    font-weight: bold;
+    font-size: 15px; /* Adjust the font size */
+    margin: 0;
+    color: rgb(86, 86, 86);
+  }
+  
+  .logout-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #40474e; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem; 
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .logout-button:hover {
+    background-color: #5a6268; /* Slightly darker shade for hover */
+    color: #d4d4d4; /* Lighter text color on hover */
+  }
+  
+  
+  .welcome-paragraph{
+    color: white;
+  }

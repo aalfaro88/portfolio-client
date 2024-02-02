@@ -1,7 +1,7 @@
 // AddUsernameForm.jsx
 
 import { useState } from 'react';
-import { post } from '../services/authService';
+import { post } from '../../services/authService';
 
 function AddUsernameForm({ onUsernameAdded }) {
   const [username, setUsername] = useState('');

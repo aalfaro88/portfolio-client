@@ -1,0 +1,79 @@
+.aboutme-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 700px;
+    background-color: #1A1E23;
+    background-image: radial-gradient(circle at 50% 50%, #193436 2px, transparent 0);
+    background-size: 20px 20px;
+}
+
+.about-left-section {
+    padding: 40px;
+    width: 50%;
+    margin-left: 50px;
+}
+
+
+.title-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    background-color: #282E36;
+    width: 200px;
+    border: 3px solid #12F7D6;
+    border-radius: 30px 0 30px 0;
+    margin-bottom: 20px;
+}
+
+.title {
+    color: white;
+    font-size: 2rem;
+    text-align: center; 
+    margin: 0; 
+}
+
+
+.description-box {
+    background-color: #282E36;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.description-text {
+    color: white;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+
+.hello-text {
+    color: #12F7D6; /* Green color */
+    font-size: 1.8rem; /* Larger font size */
+    font-weight: bold;
+}
+
+.greeting-text {
+    color: white;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: left;
+    margin-top: 20px;
+}
+
+
+
+.about-right-section {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.tech-background-image {
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px; 
+}
