@@ -10,7 +10,7 @@ const Greeting = () => {
         <div className="section-container">
             <div className='left-box'>
                 <div className='profile-container'>
-                <img src='../../../public/images/profile-picture.jpeg' alt="Profile" className="profile-picture" />
+                <img src='/images/profile-picture.jpeg' alt="Profile" className="profile-picture" />
                 <h2>Alberto Alfaro</h2>
                 <p>Full-Stack Web Developer</p>
                 <div className='personal-info'>
