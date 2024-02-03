@@ -81,20 +81,25 @@
     display: inline-block; /* Align with the icon */
   }
   
+
   
   .download-cv-button {
-    background-color: #007bff;
-    color: white;
+    background-color: #12F7D6; /* Green theme color */
+    color: #1A1E23; /* Dark text color for contrast */
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
-    margin-top: 20px;
+    margin-top: 5px;
     cursor: pointer;
+    font-size: .9rem;
+    text-decoration: none; /* Removes underline from text */
+    display: inline-block; /* Allows padding and width/height to be set */
+    text-align: center; /* Centers text in button */
     transition: background-color 0.3s;
-  }
+}
   
   .download-cv-button:hover {
-    background-color: #0056b3;
+    background-color: #0ca18b; ;
   }
  
   

@@ -8,6 +8,10 @@ import Greeting from './components/front-page/Greeting';
 import AboutMe from './components/front-page/AboutMe';
 import MiniGameHome from './components/front-page/MiniGameHome';
 import BankSimulatorHome from './Pages/BankSimulatorHome';
+import Works from './components/front-page/Works';
+import ContactInfo from './components/front-page/ContactInfo';
+
+
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -19,24 +23,27 @@ function App() {
     const token = localStorage.getItem('authToken');
     if (token) {
       setIsAuthenticated(true);
-      checkUsername();
+      checkUsername();  // Ensure this is called
     } else {
       setUsernameChecked(true);
     }
   }, []);
-
+  
   const checkUsername = async () => {
+    console.log("Checking username...");  // Confirm this is called
     try {
       const usernameResponse = await get('/users/check-username');
+      console.log('Username response:', usernameResponse);  // Inspect the response
+  
       if (usernameResponse.status === 200) {
         const { hasUsername, username } = usernameResponse.data;
-        console.log('Logged in user username:', username);
+        console.log('Logged in user username:', username);  // Check the username
   
         if (hasUsername) {
-          // User has a username, no need to show the form
+          console.log('User has a username, hiding form.'); // Confirm this logic
           setShouldShowAddUsernameForm(false);
         } else {
-          // User doesn't have a username, show the form
+          console.log('User does not have a username, showing form.'); // And this
           setShouldShowAddUsernameForm(true);
         }
       } else {
@@ -45,11 +52,10 @@ function App() {
     } catch (error) {
       console.error('Error checking username:', error);
     } finally {
-      setUsernameChecked(true); // Ensure that setUsernameChecked is always called
+      setUsernameChecked(true); // Confirm this is set
     }
   };
   
-
   const handleLogin = async (googleData) => {
     try {
       const response = await post('/auth/google-login', {
@@ -57,15 +63,17 @@ function App() {
       });
       const { authToken } = response.data;
       localStorage.setItem('authToken', authToken);
-      setIsAuthenticated(true); // Update authentication state
+      setIsAuthenticated(true); 
+      checkUsername(); 
     } catch (error) {
       console.error('Login Error:', error);
     }
   };
+  
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
-    setIsAuthenticated(false); // Update authentication state
+    setIsAuthenticated(false); 
   };
 
   const handleUsernameAdded = () => {
@@ -77,6 +85,9 @@ function App() {
     <GoogleOAuthProvider clientId="369527887188-jc5rpas4gfd0e4teldg7qt54h86u4j5n.apps.googleusercontent.com">
       <div>
         <Navbar isAuthenticated={isAuthenticated} handleLogout={handleLogout} />
+        {shouldShowAddUsernameForm && !usernameChecked && (
+          <AddUsernameForm onUsernameAdded={handleUsernameAdded} />
+        )}
         {location.pathname !== '/bank-simulator' && <Greeting />}
         {location.pathname !== '/bank-simulator' && <AboutMe />}
         <Routes>
@@ -89,10 +100,12 @@ function App() {
               shouldShowAddUsernameForm={shouldShowAddUsernameForm}
               handleUsernameAdded={handleUsernameAdded}
               handleLogout={handleLogout}
-            />}
-          />
+              />}
+              />
           <Route path="/bank-simulator" element={<BankSimulatorHome />} /> 
         </Routes>
+              {location.pathname !== '/bank-simulator' && <Works />}
+              {location.pathname !== '/bank-simulator' && <ContactInfo />}
       </div>
     </GoogleOAuthProvider>
   );

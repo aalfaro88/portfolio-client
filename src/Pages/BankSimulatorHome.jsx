@@ -101,7 +101,15 @@ function BankSimulator() {
                 </div>
               </div>
             </Slider>
+            <div className="simulator-info-section">
+              <h3 className="simulator-info-title">About the Simulator</h3>
+              <p className="simulator-info-description">
+                Feel free to explore the Bank Simulator with any fictitious email and card number you prefer. Make sure your card number is unique, has 16 digits, and your email has not been used in the system before. We prioritize your privacy and only store your email and card number for simulation purposes. Remember, there's no functionality for retrieving, altering, or deleting usernames or passwords. Enjoy a risk-free environment to manage virtual finances!
+              </p>
+            </div>
           </>
+          
+          
         )} 
         {isAuthenticated && <MyAccount />}
       </div>

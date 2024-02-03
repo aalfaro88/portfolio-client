@@ -35,7 +35,7 @@ const BankLogin = ({ onLoginSuccess }) => {
       
       return (
         <div className='Signup-box'>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className='bank-form'>
             <div>
               <label>Email/Card Number:</label>
               <input 

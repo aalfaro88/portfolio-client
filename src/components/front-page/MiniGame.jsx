@@ -378,14 +378,16 @@ const handleMouseUp = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {topScores.map((score, index) => (
-                                    <tr key={index}>
-                                        <td>{index + 1}</td>
-                                        <td>{score.username}</td>
-                                        <td>{score.max_points}</td>
-                                        <td>{new Date(score.max_points_date).toLocaleString()}</td>
-                                    </tr>
-                                ))}
+                                {topScores
+                                    .filter((score) => score.max_points > 0) // Filter out scores with 0 points
+                                    .map((score, index) => (
+                                        <tr key={index}>
+                                            <td>{index + 1}</td>
+                                            <td>{score.username}</td>
+                                            <td>{score.max_points}</td>
+                                            <td>{new Date(score.max_points_date).toLocaleString()}</td>
+                                        </tr>
+                                    ))}
                             </tbody>
                         </table>
                     </div>

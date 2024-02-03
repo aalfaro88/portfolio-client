@@ -4,24 +4,26 @@
     justify-content: center;
     padding: 20px;
     width: 100%;
-    max-width: 400px; /* Max width so the form doesn't stretch too wide on larger screens */
-    margin: auto; /* Center the box horizontally */
+    max-width: 400px; 
+    margin: auto; 
     font-size: 1rem;
 }
 
-.Signup-box form {
+.bank-form {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 15px; /* Increase space between inputs */
-    width: 100%; /* Ensure inputs and button are full width */
+    gap: 15px; 
+    width: 100%; 
+    background-color: white;
+    box-shadow: none;
 }
 
 .Signup-box label {
-    display: block; /* Make labels block elements */
-    margin-bottom: 5px; /* Space between label and input */
-    color: #333; /* Darker font color for better contrast */
+    display: block; 
+    margin-bottom: 5px; 
+    color: #333; 
 }
 
 .Signup-box input {

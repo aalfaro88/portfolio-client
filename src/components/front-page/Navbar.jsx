@@ -1,16 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Navbar.css'; // Import the CSS file for Navbar styling
 import { Link } from 'react-router-dom';
 
 function Navbar({ isAuthenticated, handleLogout }) {
+  const [isScrolled, setIsScrolled] = useState(false);
   const handleLinkClick = () => {
     if (isAuthenticated) {
       handleLogout();
     }
   };
 
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 50;
+      setIsScrolled(isScrolled);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="navbar-list">
         <div className='left-section'>
             <Link to="/" className="navbar-link" onClick={handleLinkClick}>

@@ -22,7 +22,7 @@ const Greeting = () => {
                         <FontAwesomeIcon icon={faMapMarkerAlt} className="contact-info-icon" />
                         <span className="contact-info-text">Mexico</span>
                     </div>
-                    <button className="download-cv-button">Download CV</button>
+                    <a href="/files/CV.pdf" download="CV.pdf" className="download-cv-button">Download CV</a>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@ const Greeting = () => {
                 </p>
             </div>
             <div className='right-box'>
-                {['HTML', 'JS', 'REACT', 'CSS', 'PYTHON', 'EXCEL'].map(tech => (
+                {['HTML', 'JS', 'REACT', 'CSS', 'PYTHON', 'MYSQL', 'EXCEL'].map(tech => (
                     <div key={tech} className="tech-skill">{tech}</div>
                 ))}
             </div>

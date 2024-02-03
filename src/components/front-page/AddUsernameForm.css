@@ -1,0 +1,86 @@
+.form-containter{
+    display: flex;
+    height: 500px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #282E36; /* Dark background for the form */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* subtle shadow */
+    max-width: 400px; /* Adjust the width as needed */
+    margin: auto; /* Center the form on the page */
+    color: #fff; /* White text color */
+  }
+  
+  form label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 1.2rem; /* Larger font size for labels */
+  }
+  
+  form input{
+    width: 70%;
+    padding: 10px;
+    margin-right: 10px; /* Space between input and button */
+    border: 2px solid #12F7D6; /* Border color */
+    border-radius: 5px;
+    background-color: #f9f9f9; /* Light background for the input */
+    font-size: 1.1rem; /* Larger font size for input */
+  }
+  
+  form button {
+    padding: 10px 20px;
+    
+    background-color: #12F7D6; /* Primary button color */
+    color: #6c6c6c; /* White text color */
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    font-size: 1.1rem; /* Larger font size for button */
+  }
+  
+  form button:hover {
+    background-color: #00ba9e; /* Darker shade when hovered */
+  }
+  
+  form button:disabled {
+    background-color: #cccccc; /* Disabled button color */
+    cursor: not-allowed; /* Change cursor for disabled state */
+  }
+  
+  .error-message {
+    color: #ff6b6b; /* Error message color */
+    margin: 10px 0;
+    font-size: 1rem; /* Font size for error messages */
+  }
+  
+  .notes {
+    color: #fff; /* White text color for the notes */
+    font-size: 1rem; /* Font size for the notes */
+    padding-left: 20px; 
+    text-align: left;
+  }
+  
+  .notes ul {
+    list-style: none; /* Remove default list style */
+    padding: 0; /* Remove default padding */
+  }
+  
+  .notes li::before {
+    content: '•'; /* Custom bullet point */
+    color: #12F7D6; /* Bullet point color */
+    display: inline-block; 
+    width: 1em; /* Fixed width for bullet points */
+    margin-left: -1em; /* Align bullet points with the text */
+  }
+  

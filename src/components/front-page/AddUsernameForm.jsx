@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { post } from '../../services/authService';
+import './AddUsernameForm.css'
 
 function AddUsernameForm({ onUsernameAdded }) {
   const [username, setUsername] = useState('');
@@ -49,27 +50,29 @@ function AddUsernameForm({ onUsernameAdded }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={handleUsernameChange}
-        />
-      </label>
-      <button type="submit" disabled={!isFormValid}>
-        Submit
-      </button>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-      <div className="notes">
-        <ul>
-          <li>Minimum length of 3 characters.</li>
-          <li>Maximum length of 20 characters.</li>
-          <li>Only alphanumeric characters and underscores allowed.</li>
-        </ul>
-      </div>
-    </form>
+    <div className='form-containter'>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Username:
+            <input
+              type="text"
+              value={username}
+              onChange={handleUsernameChange}
+            />
+            <button type="submit" disabled={!isFormValid}>
+              Submit
+            </button>
+          </label>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          <div className="notes">
+            <ul>
+              <li>Minimum length of 3 characters</li>
+              <li>Maximum length of 20 characters</li>
+              <li>Only alphanumeric characters and underscores allowed</li>
+            </ul>
+          </div>
+        </form>
+    </div>
   );
 }
 

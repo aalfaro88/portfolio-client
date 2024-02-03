@@ -3,6 +3,7 @@ import React from 'react';
 import './MiniGameHome.css';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import MiniGame from './MiniGame';
+import AddUsernameForm from './AddUsernameForm';
 
 function MiniGameHome({ isAuthenticated, handleLogin, usernameChecked, shouldShowAddUsernameForm, handleUsernameAdded, handleLogout }) {
   return (

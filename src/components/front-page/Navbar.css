@@ -1,4 +1,12 @@
 /* Navbar.css */
+
+.navbar.scrolled {
+  height: 80px; /* Smaller height when scrolled */
+  background-color: #282E36;
+  transition: height 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Smooth transition */
+}
+
+
 .navbar {
   display: flex;
   align-items: center;
@@ -9,7 +17,6 @@
   z-index: 1000;
   top: 0;
   background-color: #282E36;
-
 }
 
   

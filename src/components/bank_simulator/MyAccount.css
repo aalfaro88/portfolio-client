@@ -14,10 +14,20 @@ h1 {
 .bank-box {
     background-color: rgb(238, 238, 238);
     width: 400px;
-    height: 500px;
+    height: auto; /* Adjust height based on content */
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #1A1E23; /* Dark text color for contrast */
+}
+
+h2 {
+    font-size: 1.5em; /* Adjust title font size */
+    margin-bottom: 10px; /* Spacing after title */
+}
+
+p {
+    font-size: 1.2em; /* Adjust paragraph font size */
 }
 
 .bank-line {
@@ -30,21 +40,46 @@ h1 {
 }
 
 .bank-form {
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(238, 238, 238); /* Same as box background */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 300px; /* Adjust the width as needed */
+    margin: auto; /* Center the form in the box */
+    box-shadow: none; /* No shadow */
 }
 
 .bank-form input {
-    width: 80%;
+    width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: white; /* Same as form background */
+    color: #1A1E23; /* Dark text color for contrast */
 }
 
+/* Add these rules */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+/* ... rest of your CSS ... */
+
+
 .bank-form button {
-    width: 85%;
+    width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #092146; /* Dark blue color for button */
     color: white;
     border: none;
     border-radius: 5px;
@@ -53,10 +88,89 @@ h1 {
 }
 
 .bank-form button:hover {
+    background-color: darken(#092146, 10%); /* Slightly darker color on hover */
+}
+
+
+.bank-form button:hover {
     background-color: #0056b3;
 }
 
 .error-message {
     color: red;
     margin-top: 10px;
+    font-size: 1em; /* Adjust font size for visibility */
+    text-align: center; /* Center align error message */
+}
+
+.account-info {
+    height: auto;
+    width: 80%;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: none;  /* Removed box-shadow as per note */
+}
+
+.account-info-title {
+    text-align: center;
+    color: #092146;
+    margin-bottom: 30px;
+}
+
+.account-info-content {
+    display: flex;
+    justify-content: space-between;
+    text-align: justify;
+    gap: 20px;
+    color: black;
+    margin: 20px;
+}
+
+.savings-info h3{
+    font-size: 2rem;
+}
+
+.investments-info  h3{
+    font-size: 2rem;
+}
+.savings-info, .investments-info {
+    flex: 1;
+    background-color: #eeeeee; /* Background color changed to white */
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+}
+
+
+
+.subtitle {
+    color: #092146;
+    margin-bottom: 15px;
+}
+
+.funds-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #092146;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bolder;
+}
+
+.funds-amount {
+    font-weight: lighter;
+    color: #092146;
+    font-size: 1.4rem;
+    background-color: white;
+    border-radius: 4px;
+    min-width: 150px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4px;
 }

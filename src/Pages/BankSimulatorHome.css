@@ -6,13 +6,16 @@
 
 /* Base styles (applied to all screen sizes) */
 .box {
-  width: 100%;
+  width: 90%;
+  margin-left: 5%;
   height: 840px;
   font-size: 1.5rem;
-  margin-top: 120px;
+  margin-top: 150px;
   margin-bottom: 20px;
   background-color: white;
   overflow: auto;
+  border: solid #0c9b88;
+  border-radius: 20px;
 }
 
 .box h1 {
@@ -24,7 +27,7 @@
   width: 100%;
   height: 400px;
   background-color: #063262;
-  margin-bottom: 30px;
+  margin-bottom: 70px;
 }
 
 .information-slide {
@@ -76,4 +79,31 @@
   .bank-simulator {
     display: none;
   }
+}
+
+
+.simulator-info-section {
+  background: linear-gradient(to right, #ffffff, #34b4f030); /* Gradient from white to #34B5F0 */
+  width: 80%;
+  height: 230px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-left: 10%;
+  text-align: left;
+  margin-bottom: 50px;
+}
+
+
+.simulator-info-title {
+  color: #092146; /* Dark color for the title */
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+  padding: 10px;
+}
+
+.simulator-info-description {
+  color: #333; 
+  padding: 10px;
+  font-size: 1.2rem;
+  line-height: 1.5;
 }
