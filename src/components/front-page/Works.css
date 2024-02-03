@@ -1,4 +1,10 @@
 .works-section{
     height: 400px;
-    background-color: rgb(109, 109, 109);
+    background-color: rgb(255, 255, 255);
+}
+
+.works-section h1{
+    height: 400px;
+    background-color: rgb(213, 213, 213);
+    color: black;
 }

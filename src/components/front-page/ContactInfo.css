@@ -1,4 +1,10 @@
 .contact-info-section{
     height: 400px;
-    background-color: aqua;
+    background-color: rgb(213, 213, 213);
+}
+
+.contact-info-section h1{
+    height: 400px;
+    background-color: rgb(213, 213, 213);
+    color: black;
 }
