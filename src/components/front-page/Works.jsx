@@ -51,13 +51,8 @@ const Works = () => {
       };
 
       useEffect(() => {
-        // Add an event listener for window resize
         window.addEventListener('resize', updateSlidesPerView);
-    
-        // Call updateSlidesPerView initially to set the initial slidesPerView
         updateSlidesPerView();
-    
-        // Clean up the event listener when the component unmounts
         return () => {
           window.removeEventListener('resize', updateSlidesPerView);
         };
@@ -65,8 +60,8 @@ const Works = () => {
 
       return (
         <>
-          <div>
-            <h1>Works</h1>
+          <div className='works-title-section'>
+            <h1 className='custom-title'>Works</h1>
           </div>
           <div id="word-minigame" className='works-section'>
             <Swiper
