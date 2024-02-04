@@ -37,6 +37,7 @@
     text-decoration: none; 
     color: #fff; 
     font-weight: bold;
+    
   }
   
   .navbar-link:hover {
@@ -54,3 +55,32 @@
     letter-spacing: -.5px;
   }
 
+  .right-section {
+    font-size: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    align-items: center; 
+  }
+  
+  .icon {
+    margin-right: 8px;
+    color: #12F7D7;
+  }
+  
+  .navbar-link {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    align-items: center; 
+    transition: color 0.3s ease-in-out;
+    margin-right: 20px;
+  }
+
+  
+  
+  .navbar-link:hover {
+    text-decoration: underline;
+    color: #ddd;
+    cursor: pointer; 
+  }

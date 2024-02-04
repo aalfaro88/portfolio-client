@@ -103,26 +103,37 @@ function App() {
         {shouldShowAddUsernameForm && !usernameChecked && (
           <AddUsernameForm onUsernameAdded={handleUsernameAdded} />
         )}
-        {location.pathname !== '/bank-simulator' && <Greeting />}
-        {location.pathname !== '/bank-simulator' && <AboutMe />}
-        {location.pathname !== '/bank-simulator' && <Works />}
-        <Routes>
-          <Route
-            path="/"
-            element={<MiniGameHome
-              isAuthenticated={isAuthenticated}
-              handleLogin={handleLogin}
-              usernameChecked={usernameChecked}
-              shouldShowAddUsernameForm={shouldShowAddUsernameForm}
-              handleUsernameAdded={handleUsernameAdded}
-              handleLogout={handleLogout}
-              />}
-              />
+        <div id="greeting">
+          {location.pathname !== '/bank-simulator' && <Greeting />}
+        </div>
+        <div id="about-me">
+          {location.pathname !== '/bank-simulator' && <AboutMe />}
+        </div>
+        <div id="works">
+          {location.pathname !== '/bank-simulator' && <Works />}
+        </div>
+        <div id="mini-game">
+          <Routes>
+            <Route
+              path="/"
+              element={<MiniGameHome
+                isAuthenticated={isAuthenticated}
+                handleLogin={handleLogin}
+                usernameChecked={usernameChecked}
+                shouldShowAddUsernameForm={shouldShowAddUsernameForm}
+                handleUsernameAdded={handleUsernameAdded}
+                handleLogout={handleLogout}
+                />}
+            />
           <Route path="/bank-simulator" element={<BankSimulatorHome />} /> 
         </Routes>
-              {location.pathname !== '/bank-simulator' && <ContactInfo />}
+        </div>
+        <div id="contact-info">
+          {location.pathname !== '/bank-simulator' && <ContactInfo />}
+        </div>
       </div>
     </GoogleOAuthProvider>
+
   );
 };
 

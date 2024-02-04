@@ -76,6 +76,10 @@
     font-size: 1.4rem;
 }
 
+.scroll-link {
+    cursor: pointer; 
+  }
+
 .swiper-pagination {
     margin-top: 35px;
     position: relative !important;
