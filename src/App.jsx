@@ -18,6 +18,21 @@ function App() {
   const [shouldShowAddUsernameForm, setShouldShowAddUsernameForm] = useState(false);
   const [usernameChecked, setUsernameChecked] = useState(false);
   const location = useLocation();
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+  
+    window.addEventListener('resize', handleResize);
+  
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  
+
 
   useEffect(() => {
     const token = localStorage.getItem('authToken');
@@ -90,6 +105,7 @@ function App() {
         )}
         {location.pathname !== '/bank-simulator' && <Greeting />}
         {location.pathname !== '/bank-simulator' && <AboutMe />}
+        {location.pathname !== '/bank-simulator' && <Works />}
         <Routes>
           <Route
             path="/"
@@ -104,7 +120,6 @@ function App() {
               />
           <Route path="/bank-simulator" element={<BankSimulatorHome />} /> 
         </Routes>
-              {location.pathname !== '/bank-simulator' && <Works />}
               {location.pathname !== '/bank-simulator' && <ContactInfo />}
       </div>
     </GoogleOAuthProvider>

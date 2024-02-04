@@ -69,41 +69,4 @@
   font-size: 1.2rem;
 }
 
-/* Show message on small screens */
-@media (max-width: 768px) {
-  .small-screen-message {
-    display: block;
-  }
 
-  /* Hide main content on small screens */
-  .bank-simulator {
-    display: none;
-  }
-}
-
-
-.simulator-info-section {
-  background: linear-gradient(to right, #ffffff, #34b4f030); /* Gradient from white to #34B5F0 */
-  width: 80%;
-  height: 230px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-left: 10%;
-  text-align: left;
-  margin-bottom: 50px;
-}
-
-
-.simulator-info-title {
-  color: #092146; /* Dark color for the title */
-  margin-bottom: 10px;
-  font-size: 1.8rem;
-  padding: 10px;
-}
-
-.simulator-info-description {
-  color: #333; 
-  padding: 10px;
-  font-size: 1.2rem;
-  line-height: 1.5;
-}

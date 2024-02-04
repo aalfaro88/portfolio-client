@@ -23,3 +23,29 @@ h1 {
   line-height: 1.1;
   color: #16FCDA;
 }
+
+
+/* Add this to your index.css or a separate CSS file */
+@media (max-width: 768px) {
+  .website-container {
+    display: none;
+  }
+}
+
+
+/* Add this to your index.css or a separate CSS file */
+.mobile-message {
+  display: none; 
+  text-align: center;
+  background-color: #ff000023; 
+  color: #ffffff; 
+  padding: 10px;
+  font-size: 1.7rem;
+
+}
+
+@media (max-width: 768px) {
+  .mobile-message {
+    display: block; /* Show the message for smaller screens */
+  }
+}

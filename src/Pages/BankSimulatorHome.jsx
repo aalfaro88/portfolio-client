@@ -12,15 +12,10 @@ import MyAccount from '../components/bank_simulator/MyAccount';
 
 
 function BankSimulator() {
-  const [isWebpageVersion, setIsWebpageVersion] = useState(true);
   const [showSignUp, setShowSignUp] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-
-  const toggleVersion = () => {
-    setIsWebpageVersion(prev => !prev);
-  };
 
   const handleBecomeMemberClick = () => {
     setShowLogin(false);
@@ -53,10 +48,6 @@ function BankSimulator() {
   };
 
   return (
-  <div>
-    <div className="small-screen-message">
-        This webpage is intended for wide screens. Please visit us on a larger device for the best experience.
-    </div>
     <div className='bank-simulator'>
       <div className="box">
         <NavbarBank 
@@ -114,7 +105,7 @@ function BankSimulator() {
         {isAuthenticated && <MyAccount />}
       </div>
     </div>
-  </div>
+
   );
   
 }

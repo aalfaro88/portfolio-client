@@ -5,7 +5,7 @@ import { faEnvelope, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Greeting = () => {
   return (
-    <div>
+    <div className='welcome-section'>
         <h1 className='welcome-message'>My Portfolio</h1>
         <div className="section-container">
             <div className='left-box'>
