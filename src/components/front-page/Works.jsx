@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './Works.css';
 
@@ -35,25 +35,53 @@ const Works = () => {
         }
     ];
 
-    return (
+    const [slidesPerView, setSlidesPerView] = useState(3); 
+
+    const updateSlidesPerView = () => {
+        if (window.innerWidth >= 1730) {
+          setSlidesPerView(3);
+          console.log(3);
+        } else if (window.innerWidth >= 1100) {
+          setSlidesPerView(2);
+          console.log(2);
+        } else {
+          setSlidesPerView(1);
+          console.log(1);
+        }
+      };
+
+      useEffect(() => {
+        // Add an event listener for window resize
+        window.addEventListener('resize', updateSlidesPerView);
+    
+        // Call updateSlidesPerView initially to set the initial slidesPerView
+        updateSlidesPerView();
+    
+        // Clean up the event listener when the component unmounts
+        return () => {
+          window.removeEventListener('resize', updateSlidesPerView);
+        };
+      }, []); 
+
+      return (
         <>
-        <div className='works-title-section'>
-            <h1 className="custom-title">Projects</h1>
-        </div>
-        <div className='works-section'>
-          <Swiper
-            slidesPerView={3}
-            spaceBetween={0}
-            pagination={{
-              clickable: true,
-            }}
-            loop={true} // Enable looping
-            modules={[Pagination]}
-            className="mySwiper"
-          >
-            {projects.map((project, index) => (
-              <SwiperSlide key={index}>
-                <div className="project-card">
+          <div>
+            <h1>Works</h1>
+          </div>
+          <div id="word-minigame" className='works-section'>
+            <Swiper
+              slidesPerView={slidesPerView}
+              spaceBetween={0}
+              pagination={{
+                clickable: true,
+              }}
+              loop={true} // Enable looping
+              modules={[Pagination]}
+              className="mySwiper"
+            >
+              {projects.map((project, index) => (
+                <SwiperSlide key={index}>
+                  <div className="project-card">
                   <div className='left-project-section'>
                     <div className='project-title'>
                       <h2>{project.title}</h2>

@@ -34,7 +34,8 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
     margin: 0 auto; 
     padding: 20px;
     border-radius: 20px;
