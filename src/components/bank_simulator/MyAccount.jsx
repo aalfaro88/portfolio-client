@@ -162,60 +162,77 @@ useEffect(() => {
 
 const calculateCurrentTotal = () => {
     const now = Date.now();
-    const minutesElapsed = Math.floor((now - lastUpdate) / profitTimeInterval); // Calculate full minutes
+    const minutesElapsed = Math.floor((now - lastUpdate) / profitTimeInterval); 
     const growthFactor = Math.pow(1 + growthRatePerMinute, minutesElapsed);
-    const totalWithProfit = investmentFunds * growthFactor; // current total = initial investment + profit
-    return parseFloat(totalWithProfit.toFixed(2)); // Round to two decimal places
+    let totalWithProfit = investmentFunds * growthFactor; 
+    // If the total with profit exceeds 10,000,000, invoke the checkInvestmentCap function
+    if (totalWithProfit > 10000000) {
+        checkInvestmentCap();
+    }
+    return parseFloat(totalWithProfit.toFixed(2)); 
 };
 
+const checkInvestmentCap = async () => {
+    try {
+        const response = await post('/bank/check-investment-cap');
+        if (response.status === 200) {
+            setFunds(response.data.funds);
+            setInvestmentFunds(response.data.investmentFunds);
+            setLastUpdate(Date.now()); // Update the lastUpdate to now after the cap check
+            if (response.data.message === "Cap exceeded. Funds transferred to savings.") {
+                console.log("Investment cap exceeded, funds transferred to savings.");
+            }
+        }
+    } catch (error) {
+        console.error('Error checking investment cap:', error);
+    }
+};
+
+
+
 useEffect(() => {
-    // Function to update the current total
     const updateCurrentTotal = () => {
         const totalWithProfit = calculateCurrentTotal();
-        setCurrentTotal(totalWithProfit);
+        if (totalWithProfit >= 10000000 && investmentFunds < 10000000) {
+            // If the cap is reached and it wasn't already capped before
+            handleWithdrawSubmit(true);
+        } else {
+            setCurrentTotal(totalWithProfit);
+        }
     };
 
-    // Call the function immediately to set the initial value
     updateCurrentTotal();
-
-    // Set up an interval to update the current total every minute
     const interval = setInterval(updateCurrentTotal, profitTimeInterval);
-
-    // Clean up the interval when the component is unmounted
     return () => clearInterval(interval);
-}, [investmentFunds, lastUpdate]); // Only re-run the effect if these values change
+}, [investmentFunds, lastUpdate]);
 
 
-const handleWithdrawSubmit = async (e) => {
-    e.preventDefault();
+
+const handleWithdrawSubmit = async (isAutoWithdraw = false) => {
     setLoading(true);
     setWithdrawErrorMessage('');
 
-    const totalInvestmentWithProfit = calculateCurrentTotal();
-    console.log("Sending withdrawal request with amount: ", totalInvestmentWithProfit);
+    const amountToWithdraw = isAutoWithdraw ? 10000000 : calculateCurrentTotal();
+    console.log("Sending withdrawal request with amount: ", amountToWithdraw);
 
     try {
-        // Call the backend API to withdraw from investment
         const response = await post('/bank/withdraw-from-investment', {
-            amount: totalInvestmentWithProfit,
-            currentTotalWithProfits: totalInvestmentWithProfit
+            amount: amountToWithdraw
         });
         if (response.status === 200) {
-            // Update state with the response data
             setFunds(response.data.funds);
             setInvestmentFunds(response.data.investmentFunds);
-            setLastUpdate(Date.now()); // Reset the lastUpdate to now after successful withdrawal
+            setLastUpdate(Date.now()); 
         } else {
-            // Handle any errors that aren't thrown
             setWithdrawErrorMessage('An error occurred during the withdrawal.');
         }
     } catch (error) {
-        // Handle errors if the request fails
         setWithdrawErrorMessage(error.response?.data?.message || 'An error occurred during the withdrawal process.');
     } finally {
         setLoading(false);
     }
 };
+
 
 
 
@@ -264,7 +281,9 @@ const handleWithdrawSubmit = async (e) => {
             {investmentFunds > 0 ? (
             // Withdraw form
             <form onSubmit={handleWithdrawSubmit} className='bank-form'>
-                <button type="submit">Withdraw All</button>
+                <button type="button" onClick={() => handleWithdrawSubmit(false)}>Withdraw All</button>
+
+
             </form>
             ) : (
             // Invest form
@@ -301,11 +320,10 @@ const handleWithdrawSubmit = async (e) => {
                 <div className='investments-info'>
                     <h3 className='subtitle'>Investment Account</h3>
                     <p>
-                        Put your money to work with our Investment Account! By investing your funds, you benefit from a fantastic growth rate of 5% every minute. 
+                        Boost your balance with our Investment Account, growing your funds at a swift 5% per minute. Note that profits are smartly capped at 10,000,000.
                     </p>
-                    <br />
                     <p>
-                        Withdraw any amount back to your Savings Account whenever you want.
+                        Freedom is yours: withdraw to your Savings Account anytime.
                     </p>
                 </div>
 
