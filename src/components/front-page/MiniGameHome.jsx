@@ -15,7 +15,7 @@ function MiniGameHome({ isAuthenticated, handleLogin, usernameChecked, shouldSho
             <h1>Word mini-game</h1>
             <h3>Explore my projects and creations. Let's start with a fun word MiniGame!</h3>
             <p>
-              Discover the technologies behind the MiniGame. Click on each logo to learn more about their role in the game.<br />
+              Discover the technologies behind the MiniGame.<br />
               <b>When you are ready to play, login using your Google account.</b>
             </p>
           </div>
