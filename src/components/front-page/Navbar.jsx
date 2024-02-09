@@ -62,6 +62,12 @@ function Navbar({ isAuthenticated, handleLogout }) {
       projectUrl: "https://image-jumble.netlify.app/"
     },
     {
+    title: "Stack Exchange API and SQL",
+    description: "Analyze Stack Exchange data from an API and get insights from a flight databases using SQL. Deploy easily with Docker for a streamlined setup.",
+    imageUrl: "/images/docker-logo.png",
+    projectUrl: "https://github.com/aalfaro88/StackAPI-and-FlightSQL"
+    },
+    {
       title: "Epic Chef",
       description: "A culinary adventure. Search through thousands of recipes looking by ingredients or by recipe name.",
       imageUrl: "/images/epic-chef.png",

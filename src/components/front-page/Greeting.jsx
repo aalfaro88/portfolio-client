@@ -33,7 +33,7 @@ const Greeting = () => {
                 </p>
             </div>
             <div className='right-box'>
-                {['HTML', 'JS', 'REACT', 'CSS', 'PYTHON', 'MYSQL', 'EXCEL'].map(tech => (
+                {['HTML', 'JAVASCRIPT', 'REACT', 'CSS', 'PYTHON', 'FLASK', 'DOCKER', 'MYSQL', 'EXCEL'].map(tech => (
                     <div key={tech} className="tech-skill">{tech}</div>
                 ))}
             </div>
